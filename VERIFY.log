@@ -8,8 +8,8 @@ Result:
 
 - compileall passed for project CLI modules;
 - defensive wording gate passed;
-- pytest collected 51 tests;
-- pytest result: 51 passed.
+- pytest collected 54 tests;
+- pytest result: 54 passed.
 
 Command:
 
@@ -17,10 +17,10 @@ Command:
 
 Result:
 
-- pytest collected 51 tests;
-- pytest result: 51 passed;
+- pytest collected 54 tests;
+- pytest result: 54 passed;
 - quality gate passed;
-- scanner wrote 736 evidence rows and 9 findings;
+- scanner wrote 747 evidence rows and 9 findings;
 - benchmark corpus precision: 1.0;
 - benchmark corpus recall: 1.0;
 - verifier wrote verifier_report.md and verifier_report.json;

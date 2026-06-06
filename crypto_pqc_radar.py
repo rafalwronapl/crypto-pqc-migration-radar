@@ -330,6 +330,8 @@ def repo_id_for(root: Path) -> str:
 
 def should_scan(path: Path, root: Path) -> bool:
     rel = path.relative_to(root)
+    if path.is_symlink():
+        return False
     if any(part in EXCLUDED_PARTS for part in rel.parts):
         return False
     if path.name.endswith(".min.js"):

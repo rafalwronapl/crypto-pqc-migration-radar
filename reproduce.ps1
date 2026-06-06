@@ -33,6 +33,9 @@ try {
     throw "verifier failed with exit code $LASTEXITCODE"
   }
   $batchOut = Join-Path $OutDir "batch"
+  if ($Force -and (Test-Path $batchOut) -and -not (Test-Path (Join-Path $batchOut ".crypto-pqc-radar-output"))) {
+    Set-Content -Path (Join-Path $batchOut ".crypto-pqc-radar-output") -Value "legacy reproduce batch output marker"
+  }
   $batchArgs = @(".\batch_crypto_pqc_radar.py", "--root", $Root, "--out-dir", $batchOut)
   if ($Force) {
     $batchArgs += "--force"

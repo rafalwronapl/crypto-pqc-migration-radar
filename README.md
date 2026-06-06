@@ -18,6 +18,13 @@ fixtures are kept as raw evidence but downgraded as `catalog`, `tooling`, or
 It does not test live systems, recover keys, forge signatures, decrypt data,
 brute force credentials, or claim exploitability.
 
+## Report Confidentiality
+
+Generated reports include file paths, matched text, and short source snippets.
+Do not publish reports from private repositories unless you have reviewed and
+redacted them. Treat `reports/`, `qday_risk_report.json`, evidence JSONL, SARIF,
+CBOM, and CSV outputs as potentially sensitive audit artifacts.
+
 ## Quick Start
 
 Install test dependencies in editable mode:
@@ -105,6 +112,8 @@ Use `--roots-file .\roots.txt` for one repository root per line. Batch reports
 count repeated passive static migration review signals across local repositories;
 they do not prove shared vulnerability, runtime reachability, or an
 organization-wide migration blocker.
+When `--force` is used, batch output removal is allowed only for directories
+previously marked as scanner output with `.crypto-pqc-radar-output`.
 
 Evidence diff command:
 

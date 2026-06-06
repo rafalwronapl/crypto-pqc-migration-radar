@@ -130,6 +130,51 @@ def test_batch_cli_refuses_non_empty_out_dir_without_force(tmp_path: Path) -> No
     assert "not empty" in result.stderr
 
 
+def test_batch_force_refuses_unmarked_non_empty_out_dir(tmp_path: Path) -> None:
+    repo = tmp_path / "repo"
+    out = tmp_path / "important"
+    repo.mkdir()
+    out.mkdir()
+    (out / "keep.txt").write_text("keep\n", encoding="utf-8")
+    (repo / "auth.js").write_text("jwt.sign({}, key, { algorithm: 'RS256' });\n", encoding="utf-8")
+
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(WORKSTREAM / "batch_crypto_pqc_radar.py"),
+            "--root",
+            str(repo),
+            "--out-dir",
+            str(out),
+            "--force",
+        ],
+        cwd=WORKSTREAM,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+
+    assert result.returncode != 0
+    assert "unmarked directory" in result.stderr
+    assert (out / "keep.txt").exists()
+
+
+def test_batch_force_allows_marked_output_dir(tmp_path: Path) -> None:
+    repo = tmp_path / "repo"
+    out = tmp_path / "out"
+    repo.mkdir()
+    out.mkdir()
+    (out / ".crypto-pqc-radar-output").write_text("batch output\n", encoding="utf-8")
+    (out / "old.txt").write_text("old\n", encoding="utf-8")
+    (repo / "auth.js").write_text("jwt.sign({}, key, { algorithm: 'RS256' });\n", encoding="utf-8")
+
+    run_batch([repo], out, force=True)
+
+    assert not (out / "old.txt").exists()
+    assert (out / ".crypto-pqc-radar-output").exists()
+    assert (out / "batch_summary.json").exists()
+
+
 def test_batch_json_and_csv_are_consistent(tmp_path: Path) -> None:
     repo = tmp_path / "repo"
     out = tmp_path / "out"

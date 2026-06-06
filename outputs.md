@@ -3,6 +3,10 @@
 The scanner should produce machine-readable files first and a maintainer-facing
 summary second.
 
+Generated reports can contain file paths, matched text, and source snippets.
+Treat them as potentially sensitive audit artifacts, especially when scanning
+private repositories.
+
 ## crypto_inventory.csv
 
 One row per evidence item.

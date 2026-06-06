@@ -26,6 +26,7 @@ BATCH_CLAIM_BOUNDARY = (
     "signals across local repositories. It does not prove shared vulnerability, "
     "runtime reachability, exploitability, or an organization-wide migration blocker."
 )
+OUTPUT_MARKER = ".crypto-pqc-radar-output"
 
 SUMMARY_COLUMNS = [
     "repo_id",
@@ -103,8 +104,11 @@ def run_batch(
     if out_dir.exists() and any(out_dir.iterdir()):
         if not force:
             raise ValueError(f"--out-dir is not empty; use --force to overwrite batch outputs: {out_dir}")
+        if not (out_dir / OUTPUT_MARKER).exists():
+            raise ValueError(f"--force refuses to remove an unmarked directory; choose an empty out-dir or one containing {OUTPUT_MARKER}: {out_dir}")
         shutil.rmtree(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
+    (out_dir / OUTPUT_MARKER).write_text("batch_crypto_pqc_radar output directory\n", encoding="utf-8")
     repo_out_dir = out_dir / "repos"
     repo_out_dir.mkdir()
 

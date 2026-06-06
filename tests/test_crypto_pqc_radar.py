@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import csv
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -554,3 +555,19 @@ def test_suppression_file_requires_owner_reason_and_expiry(tmp_path: Path) -> No
         assert "owner" in str(exc) or "expires" in str(exc)
     else:
         raise AssertionError("invalid suppression file was accepted")
+
+
+def test_scanner_skips_symlinked_files_outside_root(tmp_path: Path) -> None:
+    repo = tmp_path / "repo"
+    outside = tmp_path / "outside.txt"
+    repo.mkdir()
+    outside.write_text("RSA outside repo should not be read\n", encoding="utf-8")
+    link = repo / "linked.txt"
+    try:
+        os.symlink(outside, link)
+    except (OSError, NotImplementedError):
+        return
+
+    evidence = scan_repo(repo)
+
+    assert not evidence
