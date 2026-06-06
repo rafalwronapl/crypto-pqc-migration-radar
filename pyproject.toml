@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "crypto-pqc-migration-radar"
+version = "0.1.0"
+description = "Passive static scanner for crypto migration debt and PQC readiness signals."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Rafal Wrona" }]
+dependencies = []
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+
+[project.scripts]
+crypto-pqc-radar = "crypto_pqc_radar:main"
+verify-crypto-radar = "verify_crypto_radar:main"
+batch-crypto-pqc-radar = "batch_crypto_pqc_radar:main"
+crypto-pqc-quality-gate = "quality_gate:main"
+diff-crypto-pqc-radar = "diff_crypto_pqc_radar:main"
+benchmark-crypto-pqc-corpus = "benchmark_corpus:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

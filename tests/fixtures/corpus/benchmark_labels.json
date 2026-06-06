@@ -1,0 +1,9 @@
+{
+  "task": "repo_has_runtime_migration_review_target",
+  "labels": {
+    "runtime_app": true,
+    "docs_only": false,
+    "lockfile_only": false,
+    "test_fixture": false
+  }
+}

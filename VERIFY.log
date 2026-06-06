@@ -1,0 +1,34 @@
+2026-06-06 final local verification
+
+Command:
+
+python .\quality_gate.py
+
+Result:
+
+- compileall passed for project CLI modules;
+- defensive wording gate passed;
+- pytest collected 51 tests;
+- pytest result: 51 passed.
+
+Command:
+
+.\reproduce.ps1 -Force
+
+Result:
+
+- pytest collected 51 tests;
+- pytest result: 51 passed;
+- quality gate passed;
+- scanner wrote 736 evidence rows and 9 findings;
+- benchmark corpus precision: 1.0;
+- benchmark corpus recall: 1.0;
+- verifier wrote verifier_report.md and verifier_report.json;
+- batch scanner wrote batch report for 1 repository;
+- outputs written to reports\local_crypto_radar.
+
+Boundary:
+
+This verification certifies local reproducibility and static evidence-ledger
+behavior only. It does not certify exploitability, runtime reachability, key
+validity, production vulnerability, or organization-wide migration blockers.

@@ -1,0 +1,68 @@
+{
+  "version": "0.1.0",
+  "patterns": [
+    {
+      "category": "rsa",
+      "primitive_or_protocol": "RSA",
+      "confidence": 0.82,
+      "note": "RSA public-key crypto signal",
+      "tokens": ["RSA", "RS256", "RS384", "RS512", "rsa-sha256", "createPrivateKey", "createPublicKey", "crypto.privateDecrypt", "crypto.publicEncrypt", "PKCS1", "PKCS#1", "OAEP", "rsaEncryption", "-----BEGIN RSA PRIVATE KEY-----", "-----BEGIN PUBLIC KEY-----"]
+    },
+    {
+      "category": "ecdsa",
+      "primitive_or_protocol": "ECDSA/ECDH",
+      "confidence": 0.8,
+      "note": "elliptic-curve crypto signal",
+      "tokens": ["ECDSA", "ECDH", "ES256", "ES384", "ES512", "prime256v1", "secp256r1", "P-256", "P-384", "P-521", "elliptic", "ecparam"]
+    },
+    {
+      "category": "secp256k1",
+      "primitive_or_protocol": "secp256k1",
+      "confidence": 0.86,
+      "note": "secp256k1 or wallet signing signal",
+      "tokens": ["secp256k1", "k256", "bitcoinjs-lib", "ethers", "web3", "@noble/secp256k1", "elliptic.ec('secp256k1')", "EC('secp256k1')", "ECPair", "wallet", "privateKeyToAccount"]
+    },
+    {
+      "category": "ed25519",
+      "primitive_or_protocol": "Ed25519",
+      "confidence": 0.78,
+      "note": "Ed25519 crypto signal",
+      "tokens": ["Ed25519", "EdDSA", "tweetnacl", "libsodium", "sodium-native", "@noble/ed25519"]
+    },
+    {
+      "category": "ssh_key",
+      "primitive_or_protocol": "SSH key",
+      "confidence": 0.88,
+      "note": "SSH key or SSH signing material signal",
+      "tokens": ["-----BEGIN OPENSSH PRIVATE KEY-----", "ssh-rsa", "ssh-ed25519", "ecdsa-sha2-nistp256", "ecdsa-sha2-nistp384", "ecdsa-sha2-nistp521", "authorized_keys", "known_hosts"]
+    },
+    {
+      "category": "pqc_signal",
+      "primitive_or_protocol": "PQC/hybrid",
+      "confidence": 0.9,
+      "note": "visible PQC or hybrid migration signal",
+      "tokens": ["post-quantum", "post quantum", "PQC", "hybrid", "Kyber", "ML-KEM", "Dilithium", "ML-DSA", "Falcon", "SPHINCS", "liboqs", "oqs", "Open Quantum Safe", "X25519MLKEM768", "SecP256r1MLKEM768"]
+    },
+    {
+      "category": "jwt",
+      "primitive_or_protocol": "JWT",
+      "confidence": 0.76,
+      "note": "JWT signing or verification signal",
+      "tokens": ["jsonwebtoken", "jwt", "jose", "JWKS", "JWK", "alg", "algorithm", "none", "HS256", "RS256", "ES256"]
+    },
+    {
+      "category": "tls",
+      "primitive_or_protocol": "TLS",
+      "confidence": 0.78,
+      "note": "TLS configuration signal",
+      "tokens": ["TLSv1", "TLSv1.0", "TLSv1.1", "TLSv1.2", "TLSv1.3", "ssl_protocols", "ciphers", "minVersion", "maxVersion", "rejectUnauthorized", "NODE_TLS_REJECT_UNAUTHORIZED", "InsecureSkipVerify", "verify_mode", "CERT_NONE"]
+    },
+    {
+      "category": "crypto_library",
+      "primitive_or_protocol": "crypto library",
+      "confidence": 0.68,
+      "note": "crypto library dependency or import signal",
+      "tokens": ["crypto", "node-forge", "cryptography", "pycryptodome", "rsa", "ecdsa", "jwcrypto", "pyjwt", "python-jose", "ssl", "OpenSSL", "crypto/rsa", "crypto/ecdsa", "crypto/elliptic", "crypto/tls", "github.com/golang-jwt/jwt", "github.com/lestrrat-go/jwx", "p256", "p384", "ed25519-dalek", "jsonwebtoken", "rustls", "java.security.Signature", "KeyPairGenerator", "Nimbus JOSE JWT", "jjwt", "BouncyCastle"]
+    }
+  ]
+}

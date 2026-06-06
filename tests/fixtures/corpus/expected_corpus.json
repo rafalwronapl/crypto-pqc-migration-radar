@@ -1,0 +1,22 @@
+{
+  "runtime_app": {
+    "required_contexts": ["runtime"],
+    "required_verdicts": ["migration_review"],
+    "required_evidence_grades": ["runtime_static_lifecycle_signal"]
+  },
+  "docs_only": {
+    "required_contexts": ["docs"],
+    "required_verdicts": ["inventory_only"],
+    "required_evidence_grades": ["weak_context_inventory"]
+  },
+  "lockfile_only": {
+    "required_contexts": ["lockfile"],
+    "required_verdicts": ["inventory_only"],
+    "required_evidence_grades": ["weak_context_inventory"]
+  },
+  "test_fixture": {
+    "required_contexts": ["fixture"],
+    "required_verdicts": ["inventory_only"],
+    "required_evidence_grades": ["weak_context_inventory"]
+  }
+}
