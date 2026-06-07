@@ -1,5 +1,9 @@
 # Crypto/PQC Migration Radar
 
+[![CI](https://github.com/rafalwronapl/crypto-pqc-migration-radar/actions/workflows/ci.yml/badge.svg)](https://github.com/rafalwronapl/crypto-pqc-migration-radar/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-blue.svg)](pyproject.toml)
+
 Passive static scanner for cryptography migration debt and post-quantum
 readiness.
 
@@ -17,6 +21,16 @@ fixtures are kept as raw evidence but downgraded as `catalog`, `tooling`, or
 
 It does not test live systems, recover keys, forge signatures, decrypt data,
 brute force credentials, or claim exploitability.
+
+## Why This Matters
+
+Crypto migration work usually starts with messy evidence: source snippets,
+lockfiles, CI config, documentation, test fixtures, and ambiguous library names.
+Turning those signals directly into vulnerability claims creates noise.
+
+This scanner keeps the first pass conservative. It records line-level evidence,
+downgrades catalog/tooling/fixture context, and requires promotion criteria
+before a finding becomes maintainer-facing migration advice.
 
 ## Report Confidentiality
 
