@@ -22,6 +22,17 @@ fixtures are kept as raw evidence but downgraded as `catalog`, `tooling`, or
 It does not test live systems, recover keys, forge signatures, decrypt data,
 brute force credentials, or claim exploitability.
 
+## Run In 60 Seconds
+
+```powershell
+python -m pip install -e ".[test]"
+python .\quality_gate.py
+python .\crypto_pqc_radar.py --root . --out-dir .\reports\self_scan --repo-id self --force
+```
+
+Open `reports/self_scan/qday_risk_report.md` or the JSON/SARIF outputs to
+inspect the evidence ledger from a local self-scan.
+
 ## Why This Matters
 
 Crypto migration work usually starts with messy evidence: source snippets,
